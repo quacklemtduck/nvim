@@ -26,17 +26,19 @@ Plug 'preservim/nerdtree'
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
+"if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+"endif
+"let g:deoplete#enable_at_startup = 1
 
 Plug 'Omnisharp/omnisharp-vim'
 Plug 'ionide/Ionide-vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -66,3 +68,11 @@ if (has("termguicolors"))
 endif
 
 set mouse=a
+
+set nobackup
+set nowritebackup
+set updatetime=300
+set signcolumn=yes
+
+inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
