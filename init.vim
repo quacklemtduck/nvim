@@ -39,7 +39,13 @@ Plug 'Omnisharp/omnisharp-vim'
 Plug 'ionide/Ionide-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'HerringtonDarkholme/yats.vim'
+" or Plug 'leafgarland/typescript-vim'
+Plug 'maxmellon/vim-jsx-pretty'
 
+Plug 'jiangmiao/auto-pairs'
+
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 set omnifunc=ale#completion#OmniFunc
@@ -92,3 +98,4 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 set clipboard=unnamed
+set scrolloff=4
