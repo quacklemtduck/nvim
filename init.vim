@@ -1,5 +1,5 @@
 filetype plugin on
-set number relativenumber
+set number
 set smartindent
 syntax on
 syntax enable
