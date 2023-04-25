@@ -24,7 +24,7 @@ Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
