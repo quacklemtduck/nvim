@@ -24,7 +24,7 @@ Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
 
-Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
+"Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
 
 "if has('nvim')
 "  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -46,6 +46,9 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jiangmiao/auto-pairs'
 
 Plug 'ryanoasis/vim-devicons'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 call plug#end()
 
 set omnifunc=ale#completion#OmniFunc
@@ -99,3 +102,10 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 
 set clipboard=unnamed
 set scrolloff=4
+
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
