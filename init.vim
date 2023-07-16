@@ -7,36 +7,17 @@ set shiftwidth=4
 
 call plug#begin()
 Plug 'drewtempelmeyer/palenight.vim'
-if has('nvim')
-  Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/defx.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+
 "" Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'airblade/vim-gitgutter'
 
-Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
 
 "Plug 'fatih/vim-go', { 'do': ':silent :GoUpdateBinaries' }
-
-"if has('nvim')
-"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-"else
-"  Plug 'Shougo/deoplete.nvim'
-"  Plug 'roxma/nvim-yarp'
-"  Plug 'roxma/vim-hug-neovim-rpc'
-"endif
-"let g:deoplete#enable_at_startup = 1
-
-Plug 'Omnisharp/omnisharp-vim'
-Plug 'ionide/Ionide-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'HerringtonDarkholme/yats.vim'
@@ -49,10 +30,8 @@ Plug 'ryanoasis/vim-devicons'
 
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': 'TSUpdate'}
 call plug#end()
-
-set omnifunc=ale#completion#OmniFunc
-let g:ale_completion_autoimport = 1
 
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'palenight'
@@ -83,8 +62,19 @@ set nowritebackup
 set updatetime=300
 set signcolumn=yes
 
-" Coc configs
-inoremap <silent><expr> <S-TAB> coc#pum#visible() ? coc#pum#confirm()
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+	\ coc#pum#visible() ? coc#pum#next(1) :
+	\ CheckBackspace() ? "\<Tab>" :
+	\ coc#refresh()
+
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 nnoremap <silent> K :call ShowDocumentation()<CR>
@@ -97,8 +87,23 @@ function! ShowDocumentation()
   endif
 endfunction
 
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap keys for applying code actions at the cursor position
+nmap <leader>ac  <Plug>(coc-codeaction-cursor)
+" Remap keys for apply code actions affect whole buffer
+nmap <leader>as  <Plug>(coc-codeaction-source)
+" Apply the most preferred quickfix action to fix diagnostic on the current line
+nmap <leader>qf  <Plug>(coc-fix-current)
 
 set clipboard=unnamed
 set scrolloff=4
@@ -109,3 +114,13 @@ let mapleader=" "
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope current_buffer_fuzzy_find<cr>
+nnoremap <leader>ft <cmd>Telescope current_buffer_tags<cr>
+nnoremap <leader>fr <cmd>Telescope lsp_references<cr>
+nnoremap <leader>fi <cmd>Telescope lsp_implementations<cr>
+nnoremap <leader>fd <cmd>Telescope lsp_definitions<cr>
+
+noremap <silent> k gk
+noremap <silent> j gj
+noremap <silent> 0 g0
+noremap <silent> $ g$
