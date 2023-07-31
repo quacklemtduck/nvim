@@ -14,6 +14,18 @@ lsp.ensure_installed({
     'gopls',
 })
 
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.format_on_save({
+    format_opts = {
+        async = false,
+        timeout = 10000,
+    },
+    servers = {
+        ['gopls'] = {'go'},
+    }
+})
+
 lsp.setup()
 
 -- You need to setup `cmp` after lsp-zero
