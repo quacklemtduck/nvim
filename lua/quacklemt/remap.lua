@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex) 
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
@@ -21,3 +21,11 @@ map('n', '<leader>0', '<Cmd>BufferLast<CR>', opts)
 map('n', '<C-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 map('n', '<C-c>', '<Cmd>BufferClose<CR>', opts)
+
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+
+vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz")
+
+vim.keymap.set("n", "Q", "<nop>")
