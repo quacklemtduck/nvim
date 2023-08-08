@@ -32,3 +32,8 @@ vim.keymap.set("n", "Q", "<nop>")
 
 vim.keymap.set("n", "<C-h>", "20zh")
 vim.keymap.set("n", "<C-l>", "20zl")
+
+vim.keymap.set("n", "<leader>xx", function() require("trouble").open() end)
+vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end)
+vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end)
+vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)

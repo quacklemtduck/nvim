@@ -65,4 +65,9 @@ return require('packer').startup(function(use)
     use 'romgrk/barbar.nvim'
 
     use 'RRethy/vim-illuminate'
+
+    use({
+        "folke/trouble.nvim",
+        requires = { "nvim-tree/nvim-web-devicons" }
+    })
 end)
