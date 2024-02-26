@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
         "ray-x/lsp_signature.nvim",
     }
     use('ryanoasis/vim-devicons')
+    use('terrortylor/nvim-comment')
     use({
         "utilyre/barbecue.nvim",
         tag = "*",

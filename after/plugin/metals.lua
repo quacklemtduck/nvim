@@ -19,9 +19,9 @@ metals_config.init_options.statusBarProvider = "on"
 metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 
-metals_config.on_attach = function(client, bufnr)
-  require("metals").setup_dap()
-end
+--metals_config.on_attach = function(client, bufnr)
+--  require("metals").setup_dap()
+--end
 
 -- Autocmd that will actually be in charging of starting the whole thing
 local nvim_metals_group = api.nvim_create_augroup("nvim-metals", { clear = true })
