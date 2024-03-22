@@ -1,3 +1,2 @@
 .DS_Store
-bad.vim
-plugged/
+plugin/packer_compiled.lua
