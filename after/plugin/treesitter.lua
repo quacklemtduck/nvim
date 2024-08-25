@@ -11,7 +11,7 @@ require'nvim-treesitter.configs'.setup {
 
   indent = {
       enable = true,
-      disable = { 'python', 'c'}
+      disable = { 'python', 'c', 'go'}
   },
 
   highlight = {
