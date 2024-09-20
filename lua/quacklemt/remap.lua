@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Oil)
 
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
