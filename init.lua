@@ -18,6 +18,7 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 
 vim.opt.mouse = "a"
+vim.opt.mousescroll = "ver:1"
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
