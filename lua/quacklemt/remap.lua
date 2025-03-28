@@ -22,6 +22,8 @@ map('n', '<C-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 map('n', '<C-c>', '<Cmd>BufferClose<CR>', opts)
 
+map('n', '<leader>gs', '<Cmd>lua Snacks.lazygit.open()<CR>', opts)
+
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
@@ -30,10 +32,5 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
 vim.keymap.set("n", "<C-h>", "20zh")
 vim.keymap.set("n", "<C-l>", "20zl")
-
-vim.keymap.set("n", "<leader>xx", function() require("trouble").open("diagnostics") end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").open("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").open("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").open("quickfix") end)
 
 vim.api.nvim_create_user_command('Format', 'Neoformat', {})
