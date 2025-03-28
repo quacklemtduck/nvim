@@ -12,13 +12,14 @@ return {
             bigfile = { enabled = true },
             dashboard = { enabled = true },
             explorer = { enabled = true },
-            indent = { enabled = true },
+            indent = { enabled = true, animate = {enabled = false} },
             input = { enabled = true },
             picker = { enabled = true },
-            notifier = { enabled = true },
+            notifier = { enabled = true, filter = function (notif)
+                return notif.id == "lspconfig" and notif.level == "warn"
+            end },
             quickfile = { enabled = true },
             scope = { enabled = true },
-            scroll = { enabled = true },
             statuscolumn = { enabled = true },
             words = { enabled = true },
         },
@@ -61,13 +62,6 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' }
-    },
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        main = "ibl",
-        ---@module "ibl"
-        ---@type ibl.config
-        opts = {},
     },
     {
         'romgrk/barbar.nvim',
@@ -124,7 +118,6 @@ return {
             },
         },
     },
-    { 'mfussenegger/nvim-lint' },
     { 'sbdchd/neoformat' },
     {
         "kylechui/nvim-surround",
